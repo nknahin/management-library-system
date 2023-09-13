@@ -1,4 +1,7 @@
 <?php 
+
+ob_start();
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -35,14 +38,29 @@ define('BASE_URL', 'http://localhost/library-management/');
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="index.php">Admin Login</a>
+                </li> -->
+
+                <?php if(!isset($_SESSION["user"])):?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo BASE_URL;?>login.php">User Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">User Login</a>
+                    <a class="nav-link" href="<?php echo BASE_URL;?>registration.php">Registration</a>
+                </li>
+                <?php endif;?>
+
+                <?php if(isset($_SESSION["user"])):?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo BASE_URL;?>library.php">Library</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.php">Registration</a>
+                    <a class="nav-link" href="<?php echo BASE_URL;?>logout.php">Logout</a>
                 </li>
+                <?php endif;?>
 
             </ul>
         </div>

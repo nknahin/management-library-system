@@ -13,7 +13,7 @@ $errors = [];
 $success_message = '';
 
 // Validate the form
-if (isset($_POST['form1'])) {
+if (isset($_POST['submit'])) {
     if (empty($_POST["firstname"])) {
         $errors["firstname"] = "First name can not be empty.";
     } else {
@@ -171,7 +171,7 @@ if (isset($_POST['form1'])) {
                 <label for="retype_password">Re-type Password:</label>
                 <input type="password" name="retype_password" class="form-control" autocomplete="off"> <br>
 
-            <button type="submit" name="form1" class="btn btn-primary">Register</button>
+            <button type="submit" name="submit" class="btn btn-primary">Register</button>
         </form>
     </div><br>
         </div>
