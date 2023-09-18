@@ -64,7 +64,7 @@ if (isset($_POST["submit"])) {
     <center><h3>User login</h3></center>
     <form action="" method="post">
         <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">Email ID:</label>
             <input type="email" name="email" class="form-control" id="">
             <?php
              if (!empty($errors["email"])) {
