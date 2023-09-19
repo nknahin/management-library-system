@@ -1,16 +1,11 @@
 <?php 
 ob_start();
 session_start();
-
-
 include_once("config.php");
 define('BASE_URL', 'http://localhost/library-management/');
 ?>
-<?php if(!isset($_SESSION["user"])){
-    header('location:'. BASE_URL);
-    exit;
-}
- ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +33,7 @@ define('BASE_URL', 'http://localhost/library-management/');
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-                <font style="color: white;"><span><strong>Welcome <?php echo $_SESSION["user"]["firstname"]; echo ' '.$_SESSION["user"]["lastname"]; ?></strong></span></font>
+                <font style="color: white;"><span><strong>Welcome: <?php echo $_SESSION["user"]["firstname"] ?></strong></span></font>
                 <font style="color: white;"><span><strong>Email ID: <?php echo $_SESSION["user"]["email"] ?></strong></span></font>
 
 
@@ -49,8 +44,8 @@ define('BASE_URL', 'http://localhost/library-management/');
                             My Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<?php echo BASE_URL;?>view-profile.php">View Profile</a>
-                            <a class="dropdown-item" href="<?php echo BASE_URL;?>edit-profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="view-profile.php">View Profile</a>
+                            <a class="dropdown-item" href="edit-profile.php">Edit Profile</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -69,17 +64,37 @@ define('BASE_URL', 'http://localhost/library-management/');
     }
     ?>
 
-    <!-- <div class="container">
-        <div class="col-lg-12 ml-50">
-            <center><h2>This is main library</h2><br>
-            <div class="col-md-12">
-                <p>Hi 
-                    <?php echo $_SESSION["user"]['firstname'];  ?>
-                    , Welcome to Dashboard.</p>
-            </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="update.php" method="post">
+                <div class="form-group">
+                    <label for="">FirstName:</label>
+                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["firstname"];?>" name="firstname">
+                </div><br>
+                <div class="form-group">
+                    <label for="">LastName:</label>
+                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["lastname"];?>" name="lastname">
+                </div><br>
+                <div class="form-group">
+                    <label for="">Email ID:</label>
+                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["email"]; ?>" name="email" >
+                </div><br>
+                <div class="form-group">
+                    <label for="">Phone:</label>
+                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["phone"]; ?>" name="phone">
+                </div><br>
+                <button type="submit" name="update" class="btn btn-primary">Update</button>
+            </form>
         </div>
-        </center>
-    </div> <br><br> -->
+        <div class="col-md-4"></div>
+    </div>
+
+
+
+
+
+
 
     <?php include_once("footer.php"); ?>
 </body>
