@@ -1,11 +1,16 @@
 <?php 
 ob_start();
 session_start();
-include_once("config.php");
+
+
+
 define('BASE_URL', 'http://localhost/library-management/');
 ?>
-
-
+<?php if(!isset($_SESSION["admins"])){
+    header('location:'. BASE_URL);
+    exit;
+}
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +38,8 @@ define('BASE_URL', 'http://localhost/library-management/');
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-                <font style="color: white;"><span><strong>Welcome: <?php echo $_SESSION["user"]["firstname"] ?></strong></span></font>
-                <font style="color: white;"><span><strong>Email ID: <?php echo $_SESSION["user"]["email"] ?></strong></span></font>
+                <font style="color: white;"><span><strong>Welcome <?php echo $_SESSION["admins"]["username"]; ?></strong></span></font>
+                <font style="color: white;"><span><strong>Email ID: <?php echo $_SESSION["admins"]["email"] ?></strong></span></font>
 
 
                 <ul class="nav navbar-nav navbar-right">
@@ -44,8 +49,8 @@ define('BASE_URL', 'http://localhost/library-management/');
                             My Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="view-profile.php">View Profile</a>
-                            <a class="dropdown-item" href="edit-profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL;?>admin/view-profile.php">View Profile</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL;?>admin/edit-profile.php">Edit Profile</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -56,47 +61,27 @@ define('BASE_URL', 'http://localhost/library-management/');
         </div>
     </nav><br>
     <span><marquee>This is library management system project.</marquee></span><br><br>
-
     <?php
-    if(!isset($_SESSION["user"])){
-        header("location:". BASE_URL. "login.php");
+    if(!isset($_SESSION["admins"])){
+        header("location:". BASE_URL. "admin/index.php");
         exit;
     }
     ?>
 
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <form action="update.php" method="post">
-                <center><h6><i>Note: If you click on the update button your data will be updated and you will automatically logged out.</i></h6></center>
-                <div class="form-group">
-                    <label for="">FirstName:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["firstname"];?>" name="firstname">
-                </div><br>
-                <div class="form-group">
-                    <label for="">LastName:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["lastname"];?>" name="lastname">
-                </div><br>
-                <div class="form-group">
-                    <label for="">Email ID:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["email"]; ?>" name="email" disabled>
-                </div><br>
-                <div class="form-group">
-                    <label for="">Phone:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["phone"]; ?>" name="phone">
-                </div><br>
-                <button type="submit" name="update" class="btn btn-primary">Update</button>
-            </form>
+    
+
+    <!-- <div class="container">
+        <div class="col-lg-12 ml-50">
+            <center><h2>This is main library</h2><br>
+            <div class="col-md-12">
+                <p>Hi 
+                   
+                    , Welcome to Dashboard.</p>
+            </div>
         </div>
-        <div class="col-md-4"></div>
-    </div>
+        </center>
+    </div> <br><br> -->
 
-
-
-
-
-
-
-    <?php include_once("footer.php"); ?>
+    
 </body>
 </html>

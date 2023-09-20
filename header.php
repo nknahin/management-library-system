@@ -40,9 +40,9 @@ define('BASE_URL', 'http://localhost/library-management/');
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="index.php">Admin Login</a>
-                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="admin/index.php">Admin Login</a>
+                </li>
 
                 <?php if(!isset($_SESSION["user"])):?>
                 <li class="nav-item">
