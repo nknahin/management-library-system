@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
 
     if(!$errors){
         $_SESSION['user'] = $row;
-        header('location:'.BASE_URL.'library.php');
+        header('location:'.BASE_URL.'user-dashboard.php');
     }
     
         

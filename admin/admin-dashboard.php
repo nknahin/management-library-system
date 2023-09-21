@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-
+include_once("functions.php");
 
 define('BASE_URL', 'http://localhost/library-management/');
 ?>
@@ -34,7 +34,7 @@ define('BASE_URL', 'http://localhost/library-management/');
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Library Management System</a>
+            <a class="navbar-brand" href="admin-dashboard.php">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,12 +54,62 @@ define('BASE_URL', 'http://localhost/library-management/');
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL;?>logout.php">Logout</a>
+                        <a class="nav-link" href="<?php echo BASE_URL;?>admin/logout.php">Logout</a>
                     </li>
                     
                 </ul>
         </div>
-    </nav><br>
+    </nav>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="admin-dashboard.php">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Books
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Add New Books</a>
+                            <a class="dropdown-item" href="#">Manage Books</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Category
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Add New Category</a>
+                            <a class="dropdown-item" href="#">Manage Category</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Author
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Add New Authors</a>
+                            <a class="dropdown-item" href="#">Manage Authors</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-dashboard.php">Issue Books</a>
+                    </li>
+                    
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
     <span><marquee>This is library management system project.</marquee></span><br><br>
     <?php
     if(!isset($_SESSION["admins"])){
@@ -68,19 +118,60 @@ define('BASE_URL', 'http://localhost/library-management/');
     }
     ?>
 
-    
-
-    <!-- <div class="container">
-        <div class="col-lg-12 ml-50">
-            <center><h2>This is main library</h2><br>
-            <div class="col-md-12">
-                <p>Hi 
-                   
-                    , Welcome to Dashboard.</p>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-light" style="width:300px ;">
+                <div class="card-header">Register Users:</div>
+                <div class="card-body">
+                    <p class="card-text">Number of total users: <?php echo get_user_count(); ?></p>
+                    <a href="" class="btn btn-danger" target="_blank">View Registered Users</a>
+                </div>
             </div>
         </div>
-        </center>
-    </div> <br><br> -->
+
+        <div class="col-md-3">
+            <div class="card bg-light" style="width:300px ;">
+                <div class="card-header">Register Books:</div>
+                <div class="card-body">
+                    <p class="card-text">Number of available Books: <?php echo get_book_count(); ?></p>
+                    <a href="" class="btn btn-primary" target="_blank">View Registered Books</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-light" style="width:300px ;">
+                <div class="card-header">Register Category:</div>
+                <div class="card-body">
+                    <p class="card-text">Number of total Category: <?php echo get_category_count(); ?></p>
+                    <a href="" class="btn btn-danger" target="_blank">View Catagories</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-light" style="width:300px ;">
+                <div class="card-header">Register Authors:</div>
+                <div class="card-body">
+                    <p class="card-text">Number of total Authors: <?php echo get_authors_count(); ?></p>
+                    <a href="" class="btn btn-primary" target="_blank">View Authors</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 m-auto">
+            <div class="card bg-light " style="width:300px ;">
+                <div class="card-header"> Issues Books:</div>
+                <div class="card-body">
+                    <p class="card-text">Number of Issues Books: <?php echo get_issued_books_count(); ?></p>
+                    <a href="" class="btn btn-success" target="_blank">View Issues Books</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
 
     
 </body>

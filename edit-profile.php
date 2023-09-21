@@ -78,10 +78,6 @@ define('BASE_URL', 'http://localhost/library-management/');
                     <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["lastname"];?>" name="lastname">
                 </div><br>
                 <div class="form-group">
-                    <label for="">Email ID:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["email"]; ?>" name="email" disabled>
-                </div><br>
-                <div class="form-group">
                     <label for="">Phone:</label>
                     <input type="text" class="form-control" value="<?php echo $_SESSION["user"]["phone"]; ?>" name="phone">
                 </div><br>

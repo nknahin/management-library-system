@@ -1,6 +1,7 @@
 <?php 
 ob_start();
 session_start();
+
 define('BASE_URL', 'http://localhost/library-management/');
 ?>
 
@@ -28,7 +29,7 @@ define('BASE_URL', 'http://localhost/library-management/');
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Library Management System</a>
+            <a class="navbar-brand" href="admin/admin-dashboard.php">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,14 +44,11 @@ define('BASE_URL', 'http://localhost/library-management/');
                             My Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<?php echo BASE_URL;?>admin/view-profile.php">View Profile</a>
-                            <a class="dropdown-item" href="<?php echo BASE_URL;?>admin/edit-profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="view-profile.php">View Profile</a>
+                            <a class="dropdown-item" href="edit-profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL;?>admin/logout.php">Logout</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL;?>logout.php">Logout</a>
-                    </li>
-                    
                 </ul>
         </div>
     </nav><br>
@@ -66,22 +64,28 @@ define('BASE_URL', 'http://localhost/library-management/');
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form action="">
+            <form action="admin-update.php" method="post">
+                <center><h6><i>Note: If you click on the update button your data will be updated and you will automatically logged out.</i></h6></center>
                 <div class="form-group">
-                    <label for="">FirstName:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["admins"]["username"];?>" disabled>
-                </div><br>
-                <div class="form-group">
-                    <label for="">Email ID:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["admins"]["email"]; ?>" disabled>
+                    <label for="">Username:</label>
+                    <input type="text" class="form-control" value="<?php echo $_SESSION["admins"]["username"];?>" name="username">
                 </div><br>
                 <div class="form-group">
                     <label for="">Phone:</label>
-                    <input type="text" class="form-control" value="<?php echo $_SESSION["admins"]["phone"]; ?>" disabled>
-                </div>
+                    <input type="text" class="form-control" value="<?php echo $_SESSION["admins"]["phone"]; ?>" name="phone">
+                </div><br>
+                <button type="submit" name="update" class="btn btn-primary">Update</button>
             </form>
         </div>
         <div class="col-md-4"></div>
     </div>
+
+
+
+
+
+
+
+   
 </body>
 </html>
