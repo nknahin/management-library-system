@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 include_once("config.php");
-define('BASE_URL', 'http://localhost/library-management/');
+define('BASE_URL', 'http://localhost/management-library-system/');
 ?>
 
 
